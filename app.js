@@ -1,27 +1,30 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const app = express();
-const http = require('http').Server(app);
+const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.get('/', (req, res)=>{
     res.sendFile(`${__dirname}/views/index.html`);
 })
 
-
-io.sockets.on('connection', function (socket) {
- 
+http.listen(port, function() {
+    var port = http.address().port
+    console.log(`Your Chat-App server is listening at PORT :${port}`)
   });
 
 
-app.listen(port || process.env.PORT, ()=>{
-    console.log(`You Chat-App server is running on port ${port}`);
-}); 
+io.sockets.on('connection', function (socket) {
+    console.log('this is connected user')
+  });
+
