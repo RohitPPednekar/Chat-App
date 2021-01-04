@@ -99,7 +99,7 @@ body {
   outline: none;
 }
 
-#chat-Window{
+#chat-Window, #chat-Window-Id {
   display: none;
 }
 
@@ -109,26 +109,28 @@ body {
 
         <h2>Private Group Chat Messages</h2>
         <button class="button button1" onclick="createRoom();">+Create Group</button>
-        <button class="button button2">Join Group</button>
+        <button class="button button2" >Join Group</button>
+        <h2 id="chat-Window-Id">Your Room ID: <span id="chat-number"></span></h2>
         <div id="chat-Window">
-          <div class="chat-messages">
+          <div id='chat-messages' class="chat-messages">
             <div class="message-box-holder">
-                <div class="container">
-                    <h4>Rohit</h4>
-                    <p>Hello. How are you today?</p>
+                <div class="container" id='chat-messages-container'>
+                    <!-- <h4>Rohit</h4>
+                    <p>Hello. How are you today?</p> -->
                 </div>
               </div>
         
-              <div class="message-box-holder">
+              <!-- <div class="message-box-holder">
                 <div class="container darker">
                     <h4>kiran</h4>
                     <p>Hey! I'm fine. Thanks for asking!</p>
                 </div>
-              </div>  
+              </div>   -->
             </div>
+            <div id="typing"></div>
             <div class="chat-input-holder">
-                <textarea class="chat-input"></textarea>
-                <input type="submit" value="Send" class="message-send" />
+                <textarea class="chat-input" id="chat-msg"></textarea>
+                <button onclick="sendMsgInRoom()" class="message-send">Send</button>
             </div>
         </div>
           

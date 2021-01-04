@@ -39,9 +39,27 @@ http.listen(port, function() {
 
 io.sockets.on('connection', function (socket) {
     console.log('this is connected user')
-    socket.on('createRoom', function(room) {
-        console.log(room)
-        socket.join(room);
+    socket.on('createRoom', function(roomId) {
+        console.log(roomId)
+        socket.join(roomId);
+        socket.emit('roomWindow', {
+            id: roomId,
+            //roomMembersCount: io.sockets.clients(roomId)
+        });
+
+        
     });
+
+    //Emitting messages to room users
+    socket.on('chatMsg', (data) =>{  console.log('fdsfffffffffffffffffffff')
+        io.to(data.roomname).emit('chatDisplay', {username: data.username, message: data.message});
+    })
+
+    //Broadcasting the user who is typing
+    socket.on('typing', (data) => {
+        socket.broadcast.to(data.roomname).emit('typing', data.username)
+    })
+    
+
 });
 
