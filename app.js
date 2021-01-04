@@ -1,9 +1,11 @@
-var express = require('express');
-var http = require('http');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 const port = 3000 || process.env.PORT;
 
 app.use(bodyParser.json());
@@ -13,6 +15,11 @@ app.use(cookieParser());
 app.get('/', (req, res)=>{
     res.sendFile(`${__dirname}/views/index.html`);
 })
+
+
+io.sockets.on('connection', function (socket) {
+ 
+  });
 
 
 app.listen(port || process.env.PORT, ()=>{
