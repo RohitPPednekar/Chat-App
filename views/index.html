@@ -109,23 +109,13 @@ body {
 
         <h2>Private Group Chat Messages</h2>
         <button class="button button1" onclick="createRoom();">+Create Group</button>
-        <button class="button button2" >Join Group</button>
+        <button class="button button2" onclick="joinRoom();">Join Group</button>
         <h2 id="chat-Window-Id">Your Room ID: <span id="chat-number"></span></h2>
         <div id="chat-Window">
           <div id='chat-messages' class="chat-messages">
             <div class="message-box-holder">
-                <div class="container" id='chat-messages-container'>
-                    <!-- <h4>Rohit</h4>
-                    <p>Hello. How are you today?</p> -->
-                </div>
+                <div class="container" id='chat-messages-container'> </div>
               </div>
-        
-              <!-- <div class="message-box-holder">
-                <div class="container darker">
-                    <h4>kiran</h4>
-                    <p>Hey! I'm fine. Thanks for asking!</p>
-                </div>
-              </div>   -->
             </div>
             <div id="typing"></div>
             <div class="chat-input-holder">
