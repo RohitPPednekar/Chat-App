@@ -76,22 +76,63 @@ body {
   color: black; 
   border: 2px solid #008CBA;
 }
+
+.chat-input-holder {
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.chat-input {
+  resize: none;
+  padding: 5px 10px;
+  height: 40px;
+  font-family: 'Lato', sans-serif;
+	font-size: 14px;
+  color: #999999;
+  flex: 1;
+  border: none;
+  background: rgba(0, 0, 0, .05);
+   border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.chat-input:focus, .message-send:focus {
+  outline: none;
+}
+
+#chat-Window{
+  display: none;
+}
+
 </style>
 </head>
     <body>
 
         <h2>Private Group Chat Messages</h2>
-        <button class="button button1">+Create Group</button>
+        <button class="button button1" onclick="createRoom();">+Create Group</button>
         <button class="button button2">Join Group</button>
-        <div class="container">
-            <h4>Rohit</h4>
-            <p>Hello. How are you today?</p>
+        <div id="chat-Window">
+          <div class="chat-messages">
+            <div class="message-box-holder">
+                <div class="container">
+                    <h4>Rohit</h4>
+                    <p>Hello. How are you today?</p>
+                </div>
+              </div>
+        
+              <div class="message-box-holder">
+                <div class="container darker">
+                    <h4>kiran</h4>
+                    <p>Hey! I'm fine. Thanks for asking!</p>
+                </div>
+              </div>  
+            </div>
+            <div class="chat-input-holder">
+                <textarea class="chat-input"></textarea>
+                <input type="submit" value="Send" class="message-send" />
+            </div>
         </div>
+          
 
-        <div class="container darker">
-            <h4>kiran</h4>
-            <p>Hey! I'm fine. Thanks for asking!</p>
-        </div>
         <script src="/static/js/socket-io.js"></script>
         <script src="/static/js/index.js"></script>
     </body>
